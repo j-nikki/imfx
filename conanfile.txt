@@ -1,0 +1,17 @@
+[requires]
+opencv/4.5.5
+magic_enum/0.8.0
+taocpp-pegtl/3.2.5
+
+[generators]
+cmake
+
+[options]
+opencv:with_ade=False
+opencv:with_tiff=False
+opencv:with_openexr=False
+opencv:with_eigen=False
+opencv:with_gtk=False
+opencv:with_quirc=False
+opencv:with_ffmpeg=False
+opencv:dnn=False

@@ -1,0 +1,49 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "base",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-fconcepts-diagnostics-depth=2 -std=gnu++2b -fdiagnostics-color=always -fverbose-asm -masm=intel -march=native -Wpedantic -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wrestrict -Wnull-dereference -Wold-style-cast -Wuseless-cast -Wdouble-promotion -Wshadow -Wformat=2 -Wno-missing-field-initializers -Wno-comment -Wno-maybe-uninitialized",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+        {
+            "inherits": "base",
+            "name": "debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_FLAGS_DEBUG": "-g3 -ggdb3 -O0"
+            }
+        },
+        {
+            "inherits": "base",
+            "name": "release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_FLAGS_RELEASE": "-DNDEBUG -O2 -fno-rtti -flto -fdata-sections -ffunction-sections -Wl,--gc-sections -Wl,--strip-all"
+            }
+        },
+        {
+            "inherits": "base",
+            "name": "relwithdebinfo",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "base",
+            "configurePreset": "base"
+        },
+        {
+            "inherits": "base",
+            "name": "test",
+            "targets": "server"
+        }
+    ]
+}
